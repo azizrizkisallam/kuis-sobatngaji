@@ -189,8 +189,7 @@
     </main>
 
     <script>
-        // PASTIKAN JANGAN SALAH MEMASUKKAN WEB APP URL TERBARU ANTUM DI SINI!
-        const API_URL = 'https://script.google.com/macros/s/AKfycbx7OHxBMDb1inY1I60t3-4SoWs9D0pU4y2VxTZG_zVZlJnSEb1EInfhskKS9lqkJ2E8/exec';
+        const API_URL = 'https://script.google.com/macros/s/AKfycbzeADK2epnaT64sqH9qqSHEdlePc0kfWiJuGsJS4f8VzSxj5mXIL0ZxC7LE9sLx7y2D/exec';
         
         const formSetup = document.getElementById('setup-form');
         const formQuiz = document.getElementById('quiz-form');
@@ -462,9 +461,6 @@
             window.scrollTo(0, 0);
         }
 
-        // ========================================================
-        // REVISI TOTAL: UNDUH SERTIFIKAT VIA GET METHOD (ANTI-CORS BYPASS)
-        // ========================================================
         async function unduhSertifikat() {
             console.log("DATA SERTIFIKAT", certPayloadData);
 
@@ -486,7 +482,6 @@
             });
 
             try {
-                // Tembak menggunakan GET query params untuk meloloskan otorisasi 'Me' di Vercel secara clean
                 const getParams = new URLSearchParams({
                     action: 'certificate',
                     nama: certPayloadData.nama,
