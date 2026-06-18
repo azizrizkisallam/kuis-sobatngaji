@@ -186,12 +186,11 @@
                 Kembali ke Awal
             </button>
         </section>
-
     </main>
 
     <script>
-        // PASTIKAN GANTI DENGAN WEB APP URL ANTUM YANG BARU SETELAH DEPLOY!
-        const API_URL = 'https://script.google.com/macros/s/AKfycbwBA2cH9g8JwRbJjHvlk7qF3cXneIODDZPB68nkV69x9Wt03_6gK2-IGTD7XV10pDc1/exec';
+        // PASTIKAN JANGAN SALAH MEMASUKKAN WEB APP URL TERBARU ANTUM DI SINI!
+        const API_URL = 'https://script.google.com/macros/s/AKfycbx7OHxBMDb1inY1I60t3-4SoWs9D0pU4y2VxTZG_zVZlJnSEb1EInfhskKS9lqkJ2E8/exec';
         
         const formSetup = document.getElementById('setup-form');
         const formQuiz = document.getElementById('quiz-form');
@@ -300,7 +299,7 @@
                 const data = await response.json();
                 
                 if (data.success === false) throw new Error(data.message);
-                if (!data || data.length === 0) throw new Error("Bank soal kosong atau soal untuk filter ini belum tersedia di sheet.");
+                if (!data || data.length === 0) throw new Error("Bank soal kosong atau soal belum tersedia.");
 
                 questionsData = data;
                 answersData = {};
@@ -420,17 +419,10 @@
                 if (jenisKuis === 'Kenaikan') {
                     document.getElementById('cert-container').classList.remove('hidden');
                     
-                    // Struktur data komplit untuk dikirim ke API Sertifikat
                     certPayloadData = {
-                        action: 'certificate',
                         nama: data.nama,
-                        guru: data.guru,
                         program: data.program,
-                        level: data.program === 'Makhroj' ? data.modul : data.level,
-                        modul: data.modul,
-                        pertemuan: data.pertemuan,
-                        nilai: data.nilai,
-                        status: data.status
+                        level: data.program === 'Makhroj' ? data.modul : data.level
                     };
                 }
             } else {
@@ -470,14 +462,17 @@
             window.scrollTo(0, 0);
         }
 
+        // ========================================================
+        // REVISI TOTAL: UNDUH SERTIFIKAT VIA GET METHOD (ANTI-CORS BYPASS)
+        // ========================================================
         async function unduhSertifikat() {
             console.log("DATA SERTIFIKAT", certPayloadData);
 
-            if (!certPayloadData || !certPayloadData.program || Object.keys(certPayloadData).length === 0) {
+            if (!certPayloadData || !certPayloadData.program) {
                 Swal.fire({
                     icon: 'error',
                     title: 'Gagal',
-                    text: 'Data peserta tidak ditemukan di sisi Frontend. Silakan refresh dan ulangi kuis.',
+                    text: 'Data peserta tidak lengkap di Frontend.',
                     confirmButtonColor: '#0F766E'
                 });
                 return;
@@ -491,11 +486,15 @@
             });
 
             try {
-                const response = await fetch(API_URL, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-                    body: JSON.stringify(certPayloadData)
+                // Tembak menggunakan GET query params untuk meloloskan otorisasi 'Me' di Vercel secara clean
+                const getParams = new URLSearchParams({
+                    action: 'certificate',
+                    nama: certPayloadData.nama,
+                    program: certPayloadData.program,
+                    level: certPayloadData.level
                 });
+
+                const response = await fetch(`${API_URL}?${getParams.toString()}`);
                 const res = await response.json();
                 
                 if (res.status === 'success' || res.success === true) {
