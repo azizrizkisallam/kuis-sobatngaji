@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kuis SobatNgaji</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        tailwind.config = {
+            theme: { extend: { colors: { tosca: { 500: '#14B8A6', 700: '#0F766E', 900: '#042F2E' } } } }
+        }
+    </script>
+    <style>
+        html { scroll-behavior: smooth; }
+        .radio-custom:checked + div { border-color: #0F766E; background-color: #F0FDFA; }
+        .radio-custom:checked + div .radio-dot { background-color: #0F766E; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans antialiased min-h-screen">
+
+    <header class="bg-tosca-700 text-white p-6 shadow-md text-center sticky top-0 z-50">
+        <h1 class="text-3xl font-bold tracking-wide">Kuis SobatNgaji</h1>
+        <p class="text-lg mt-1 text-teal-100 italic">"Dilihat menyenangkan, dipelajari memudahkan."</p>
+    </header>
+
+    <main class="max-w-3xl mx-auto p-4 my-6">
+
+        <!-- SECTION 1: FORM SETUP -->
+        <section id="setup-section" class="bg-white p-6 md:p-8 rounded-2xl shadow-lg transition-all duration-300">
+            <h2 class="text-2xl font-semibold mb-6 text-tosca-700 border-b pb-2">Informasi Peserta</h2>
+            <form id="setup-form" class="space-y-5">
+                <div>
+                    <label class="block text-lg font-medium text-gray-700 mb-2">Nama Lengkap</label>
+                    <input type="text" id="nama" required class="w-full p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-tosca-500 text-lg transition" placeholder="Masukkan nama lengkap Anda">
+                </div>
+                <div>
+                    <label class="block text-lg font-medium text-gray-700 mb-2">Guru Pengampu</label>
+                    <select id="guru" required class="w-full p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-tosca-500 text-lg bg-white">
+                        <option value="" disabled selected>Pilih Guru...</option>
+                        <option value="Ust. Abdul Rozaq Amir">Ust. Abdul Rozaq Amir</option>
+                        <option value="Ust. Ari Abdullah">Ust. Ari Abdullah</option>
+                        <option value="Ust. Asep Maulana">Ust. Asep Maulana</option>
+                        <option value="Ust. Aziz Rizki Sallam">Ust. Aziz Rizki Sallam</option>
+                        <option value="Ustzh. Belia Puspitasari">Ustzh. Belia Puspitasari</option>
+                        <option value="Ust. Cecep Maolana">Ust. Cecep Maolana</option>
+                        <option value="Ustzh. Dela Arnes Septiani">Ustzh. Dela Arnes Septiani</option>
+                        <option value="Ust. Gilang Pradana">Ust. Gilang Pradana</option>
+                        <option value="Ust. Hadid Humaid Saifuddin">Ust. Hadid Humaid Saifuddin</option>
+                        <option value="Ust. Muhammad Nashrul Umam">Ust. Muhammad Nashrul Umam</option>
+                        <option value="Ust. Muhammad Sukrillah">Ust. Muhammad Sukrillah</option>
+                        <option value="Ust. Ryan Abdurrahman">Ust. Ryan Abdurrahman</option>
+                        <option value="Ustzh. Shofi Jamilatussirin">Ustzh. Shofi Jamilatussirin</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-lg font-medium text-gray-700 mb-2">Pilih Kuis</label>
+                    <select id="jenis" required class="w-full p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-tosca-500 text-lg bg-white">
+                        <option value="" disabled selected>Pilih Kuis...</option>
+                        <option value="Pertemuan">Kuis Pertemuan</option>
+                        <option value="Kenaikan">Kuis Kenaikan Level</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-lg font-medium text-gray-700 mb-2">Program</label>
+                    <select id="program" required class="w-full p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-tosca-500 text-lg bg-white">
+                        <option value="" disabled selected>Pilih Program...</option>
+                        <option value="Tahsin">Tahsin</option>
+                        <option value="Tikror">Tikror</option>
+                        <option value="Makhroj">Makhroj</option>
+                    </select>
+                </div>
+
+                <div class="p-4 bg-gray-50 rounded-xl border border-gray-200 space-y-4">
+                    <div id="div-level" class="hidden">
+                        <label class="block text-lg font-medium text-gray-700 mb-2">Level</label>
+                        <select id="level" class="w-full p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-tosca-500 text-lg bg-white"></select>
+                    </div>
+                    <div id="div-modul" class="hidden">
+                        <label class="block text-lg font-medium text-gray-700 mb-2">Modul</label>
+                        <select id="modul" class="w-full p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-tosca-500 text-lg bg-white">
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="C">C</option>
+                            <option value="D">D</option>
+                        </select>
+                    </div>
+                    <div id="div-pertemuan" class="hidden">
+                        <label class="block text-lg font-medium text-gray-700 mb-2">Pertemuan</label>
+                        <select id="pertemuan" class="w-full p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-tosca-500 text-lg bg-white"></select>
+                    </div>
+                    <div id="div-kategori" class="hidden">
+                        <label class="block text-lg font-medium text-gray-700 mb-2">Kategori Makhroj</label>
+                        <select id="kategori" class="w-full p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-tosca-500 text-xl font-bold bg-white">
+                            <option value="Pembagian Makhroj">Pembagian Makhroj</option>
+                            <option value="Al Jauf">Al Jauf</option>
+                            <option value="Al Khaisyum">Al Khaisyum</option>
+                            <option value="Sifat Huruf">Sifat Huruf</option>
+                            <option value="Hamzah (ء)">Hamzah (ء)</option>
+                            <option value="Ba (ب)">Ba (ب)</option>
+                            <option value="Ta (ت)">Ta (ت)</option>
+                            <option value="Tsa (ث)">Tsa (ث)</option>
+                            <option value="Jim (ج)">Jim (ج)</option>
+                            <option value="Ha Besar (ح)">Ha Besar (ح)</option>
+                            <option value="Kha (خ)">Kha (خ)</option>
+                            <option value="Dal (د)">Dal (د)</option>
+                            <option value="Dzal (ذ)">Dzal (ذ)</option>
+                            <option value="Ra (ر)">Ra (ر)</option>
+                            <option value="Zai (ز)">Zai (ز)</option>
+                            <option value="Sin (س)">Sin (س)</option>
+                            <option value="Syin (ش)">Syin (ش)</option>
+                            <option value="Shad (ص)">Shad (ص)</option>
+                            <option value="Dhad (ض)">Dhad (ض)</option>
+                            <option value="Tha (ط)">Tha (ط)</option>
+                            <option value="Zha (ظ)">Zha (ظ)</option>
+                            <option value="'Ain (ع)">'Ain (ع)</option>
+                            <option value="Ghain (غ)">Ghain (غ)</option>
+                            <option value="Fa (ف)">Fa (ف)</option>
+                            <option value="Qaf (ق)">Qaf (ق)</option>
+                            <option value="Kaf (ك)">Kaf (ك)</option>
+                            <option value="Lam (ل)">Lam (ل)</option>
+                            <option value="Mim (م)">Mim (م)</option>
+                            <option value="Nun (ن)">Nun (ن)</option>
+                            <option value="Ha Kecil (ه)">Ha Kecil (ه)</option>
+                            <option value="Wau (و)">Wau (و)</option>
+                            <option value="Ya (ي)">Ya (ي)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button type="submit" class="w-full bg-tosca-700 hover:bg-tosca-900 text-white font-bold text-xl py-4 rounded-xl shadow-lg transition duration-200 mt-6">
+                    Mulai Kuis
+                </button>
+            </form>
+        </section>
+
+        <!-- SECTION 2: QUIZ UI -->
+        <section id="quiz-section" class="hidden">
+            <div class="bg-white p-4 rounded-xl shadow-md mb-6 sticky top-[88px] z-40 border-b-4 border-tosca-500 flex justify-between items-center">
+                <span class="text-xl font-bold text-gray-700">Progress:</span>
+                <div class="flex items-center space-x-3 w-2/3">
+                    <div class="w-full bg-gray-200 rounded-full h-4">
+                        <div id="progress-bar-fill" class="bg-tosca-500 h-4 rounded-full transition-all duration-300" style="width: 0%"></div>
+                    </div>
+                    <span id="progress-text" class="text-lg font-bold text-tosca-700">0/0</span>
+                </div>
+            </div>
+            <form id="quiz-form">
+                <div id="questions-container" class="space-y-6"></div>
+                <button type="submit" class="w-full bg-tosca-700 hover:bg-tosca-900 text-white font-bold text-2xl py-5 rounded-xl shadow-lg transition duration-200 mt-8 mb-10">
+                    Kirim Jawaban
+                </button>
+            </form>
+        </section>
+
+        <!-- SECTION 3: RESULT UI -->
+        <section id="result-section" class="hidden bg-white p-8 rounded-2xl shadow-lg text-center">
+            <h2 class="text-4xl mb-4">Alhamdulillah 🌟</h2>
+            
+            <div class="my-8 py-6 px-4 rounded-2xl bg-gray-50 border-2 border-dashed border-tosca-500">
+                <p class="text-2xl text-gray-600 mb-2">Nilai Anda:</p>
+                <p id="result-score" class="text-6xl font-black text-tosca-700 mb-2">0</p>
+                <p id="result-correct-count" class="text-xl text-gray-700 font-medium mb-4">Jawaban benar: 0 dari 0 soal</p>
+                <div id="result-status" class="inline-block px-6 py-2 rounded-full text-2xl font-bold text-white mb-2 shadow"></div>
+            </div>
+
+            <!-- BUTTON UNDUH SERTIFIKAT -->
+            <div id="cert-container" class="hidden mb-8">
+                <button onclick="unduhSertifikat()" class="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-bold text-xl py-4 rounded-xl shadow-lg transition duration-200 flex items-center justify-center space-x-2">
+                    <span class="text-2xl">🏆</span>
+                    <span>Unduh Sertifikat Kenaikan</span>
+                </button>
+            </div>
+
+            <div class="text-left bg-gray-100 p-6 rounded-xl text-lg space-y-2 mb-8 shadow-inner">
+                <p><span class="font-semibold text-gray-600">Guru:</span> <span id="res-guru" class="font-bold"></span></p>
+                <p><span class="font-semibold text-gray-600">Program:</span> <span id="res-program" class="font-bold"></span></p>
+                <p id="wrap-res-level"><span class="font-semibold text-gray-600">Level:</span> <span id="res-level" class="font-bold"></span></p>
+                <p><span class="font-semibold text-gray-600" id="label-res-modul">Modul/Kategori:</span> <span id="res-modul" class="font-bold"></span></p>
+                <p id="wrap-res-pertemuan"><span class="font-semibold text-gray-600">Pertemuan:</span> <span id="res-pertemuan" class="font-bold"></span></p>
+            </div>
+
+            <p class="text-xl text-gray-700 font-medium">Terima kasih telah mengikuti Kuis SobatNgaji.</p>
+            <p class="text-lg text-tosca-700 italic mt-2">Dilihat menyenangkan, dipelajari memudahkan.</p>
+            
+            <button onclick="location.reload()" class="mt-8 bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold text-lg py-3 px-8 rounded-xl shadow transition duration-200">
+                Kembali ke Awal
+            </button>
+        </section>
+
+    </main>
+
+    <script>
+        // GANTI DENGAN WEB APP URL ANTUM YANG BARU SETELAH DEPLOY!
+        const API_URL = 'https://script.google.com/macros/s/AKfycbyO2iYhgP-Z8TkYiWKKPMWQmYmEC6uykPpTzy5VQK_Q_96JRZXB0p2ahTAskTeG4Dpl/exec';
+        
+        const formSetup = document.getElementById('setup-form');
+        const formQuiz = document.getElementById('quiz-form');
+        const jenisSelect = document.getElementById('jenis');
+        const programSelect = document.getElementById('program');
+        const levelSelect = document.getElementById('level');
+        const modulSelect = document.getElementById('modul');
+        const pertemuanSelect = document.getElementById('pertemuan');
+        
+        const divLevel = document.getElementById('div-level');
+        const divModul = document.getElementById('div-modul');
+        const divPertemuan = document.getElementById('div-pertemuan');
+        const divKategori = document.getElementById('div-kategori');
+        
+        let questionsData = [];
+        let answersData = {};
+        let certPayloadData = {}; 
+
+        jenisSelect.addEventListener('change', updateFormUI);
+        programSelect.addEventListener('change', updateFormUI);
+        levelSelect.addEventListener('change', updatePertemuanOptions);
+        modulSelect.addEventListener('change', updatePertemuanOptions);
+
+        function updateFormUI() {
+            const prog = programSelect.value;
+            const jenis = jenisSelect.value;
+            
+            divLevel.classList.add('hidden');
+            divModul.classList.add('hidden');
+            divPertemuan.classList.add('hidden');
+            divKategori.classList.add('hidden');
+            levelSelect.innerHTML = '';
+            
+            if (prog === 'Tahsin') {
+                divLevel.classList.remove('hidden');
+                if (jenis === 'Pertemuan') {
+                    divModul.classList.remove('hidden');
+                    divPertemuan.classList.remove('hidden');
+                }
+                levelSelect.innerHTML = '<option value="Tahsin 1">Tahsin 1</option><option value="Tahsin 2">Tahsin 2</option>';
+                updatePertemuanOptions();
+            } 
+            else if (prog === 'Tikror') {
+                divLevel.classList.remove('hidden');
+                if (jenis === 'Pertemuan') {
+                    divPertemuan.classList.remove('hidden');
+                }
+                levelSelect.innerHTML = '<option value="Tikror 1">Tikror 1</option><option value="Tikror 2">Tikror 2</option><option value="Tikror 3">Tikror 3</option>';
+                updatePertemuanOptions();
+            } 
+            else if (prog === 'Makhroj') {
+                divKategori.classList.remove('hidden');
+            }
+        }
+
+        function updatePertemuanOptions() {
+            const prog = programSelect.value;
+            pertemuanSelect.innerHTML = '';
+            let maxPertemuan = 4;
+            if (prog === 'Tahsin') {
+                if (levelSelect.value === 'Tahsin 1' && modulSelect.value === 'A') maxPertemuan = 8;
+                else maxPertemuan = 4;
+            } else if (prog === 'Tikror') {
+                maxPertemuan = 4;
+            }
+            for (let i = 1; i <= maxPertemuan; i++) {
+                pertemuanSelect.innerHTML += `<option value="${i}">${i}</option>`;
+            }
+        }
+
+        formSetup.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const jenis = jenisSelect.value;
+            const prog = programSelect.value;
+
+            let params = new URLSearchParams({
+                action: 'getQuestions',
+                program: prog,
+                jenis: jenis
+            });
+
+            if (prog === 'Tahsin') {
+                params.append('level', levelSelect.value);
+                if (jenis === 'Pertemuan') {
+                    params.append('modul', modulSelect.value);
+                    params.append('pertemuan', pertemuanSelect.value);
+                }
+            } else if (prog === 'Tikror') {
+                params.append('level', levelSelect.value);
+                if (jenis === 'Pertemuan') {
+                    params.append('pertemuan', pertemuanSelect.value);
+                }
+            } else if (prog === 'Makhroj') {
+                params.append('kategori', document.getElementById('kategori').value);
+            }
+
+            Swal.fire({
+                title: 'Menyiapkan Soal...',
+                html: 'Mohon tunggu sebentar ya.',
+                allowOutsideClick: false,
+                didOpen: () => { Swal.showLoading() }
+            });
+
+            try {
+                const response = await fetch(`${API_URL}?${params.toString()}`);
+                const data = await response.json();
+                
+                if (data.error) throw new Error(data.error);
+                if (!data || data.length === 0) throw new Error("Bank soal kosong atau soal untuk filter ini belum tersedia di sheet.");
+
+                questionsData = data;
+                answersData = {};
+                renderQuestions();
+                
+                document.getElementById('setup-section').classList.add('hidden');
+                document.getElementById('quiz-section').classList.remove('hidden');
+                window.scrollTo(0, 0);
+                Swal.close();
+            } catch (error) {
+                Swal.fire({ icon: 'error', title: 'Mohon Maaf', text: error.message, confirmButtonColor: '#0F766E' });
+            }
+        });
+
+        function renderQuestions() {
+            const container = document.getElementById('questions-container');
+            container.innerHTML = '';
+            questionsData.forEach((q, index) => {
+                const no = index + 1;
+                const html = `
+                    <div class="bg-white p-6 md:p-8 rounded-2xl shadow-md border border-gray-100">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4 leading-relaxed"><span class="text-tosca-700">${no}.</span> ${q.soal}</h3>
+                        <div class="space-y-3">
+                            ${['A', 'B', 'C', 'D'].map(opt => `
+                                <label class="relative flex items-center p-4 border-2 border-gray-200 rounded-xl cursor-pointer hover:bg-gray-50 transition-colors">
+                                    <input type="radio" name="q${index}" value="${opt}" class="radio-custom absolute opacity-0 w-0 h-0" onchange="updateProgress(${index}, '${opt}')">
+                                    <div class="w-full flex items-center">
+                                        <div class="w-8 h-8 flex-shrink-0 border-2 border-gray-300 rounded-full mr-4 flex items-center justify-center transition-colors">
+                                            <div class="radio-dot w-4 h-4 rounded-full bg-transparent transition-colors"></div>
+                                        </div>
+                                        <span class="text-xl text-gray-700 font-medium">${opt}. ${q[opt]}</span>
+                                    </div>
+                                </label>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+                container.innerHTML += html;
+            });
+            updateProgressUI();
+        }
+
+        window.updateProgress = function(index, value) {
+            answersData[index] = value;
+            updateProgressUI();
+        }
+
+        function updateProgressUI() {
+            const total = questionsData.length;
+            const answered = Object.keys(answersData).length;
+            const pct = (answered / total) * 100;
+            document.getElementById('progress-bar-fill').style.width = `${pct}%`;
+            document.getElementById('progress-text').innerText = `${answered}/${total}`;
+        }
+
+        formQuiz.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const totalSoal = questionsData.length;
+            const dijawab = Object.keys(answersData).length;
+
+            if (dijawab < totalSoal) {
+                Swal.fire({ icon: 'warning', title: 'Masih Ada Soal', text: 'Masih ada soal yang belum dijawab.', confirmButtonColor: '#0F766E' });
+                return;
+            }
+
+            let benar = 0;
+            questionsData.forEach((q, i) => { if (answersData[i] === q.kunci) benar++; });
+
+            const nilai = Math.round((benar / totalSoal) * 100);
+            const statusText = nilai >= 80 ? "Lulus" : "Belum Lulus";
+            const jenis = jenisSelect.value;
+            const prog = programSelect.value;
+            
+            const payload = {
+                nama: document.getElementById('nama').value,
+                guru: document.getElementById('guru').value,
+                program: prog,
+                level: (prog === 'Makhroj') ? "-" : levelSelect.value,
+                modul: (prog === 'Tahsin' && jenis === 'Pertemuan') ? modulSelect.value : (prog === 'Makhroj' ? document.getElementById('kategori').value : "-"),
+                pertemuan: (prog !== 'Makhroj' && jenis === 'Pertemuan') ? pertemuanSelect.value : "-",
+                nilai: nilai,
+                status: statusText
+            };
+
+            Swal.fire({
+                title: 'Mengirim Jawaban...',
+                text: 'Semoga hasilnya maksimal!',
+                allowOutsideClick: false,
+                didOpen: () => { Swal.showLoading() }
+            });
+
+            try {
+                await fetch(API_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                    body: JSON.stringify(payload)
+                });
+                tampilkanHasil(payload, jenis, benar, totalSoal);
+            } catch (error) {
+                tampilkanHasil(payload, jenis, benar, totalSoal);
+            }
+        });
+
+        function tampilkanHasil(data, jenisKuis, benar, totalSoal) {
+            Swal.close();
+            document.getElementById('quiz-section').classList.add('hidden');
+            document.getElementById('result-section').classList.remove('hidden');
+
+            document.getElementById('result-score').innerText = data.nilai;
+            document.getElementById('result-correct-count').innerText = `Jawaban benar: ${benar} dari ${totalSoal} soal`;
+            
+            const statusEl = document.getElementById('result-status');
+            if (data.status === "Lulus") {
+                statusEl.innerText = 'LULUS ✅';
+                statusEl.classList.add('bg-tosca-500');
+                
+                if (jenisKuis === 'Kenaikan') {
+                    document.getElementById('cert-container').classList.remove('hidden');
+                    certPayloadData = {
+                        action: 'certificate',
+                        nama: data.nama,
+                        program: data.program,
+                        level: data.program === 'Makhroj' ? data.modul : data.level 
+                    };
+                }
+            } else {
+                statusEl.innerText = 'BELUM LULUS 📚';
+                statusEl.classList.add('bg-red-500');
+            }
+
+            document.getElementById('res-guru').innerText = data.guru;
+            document.getElementById('res-program').innerText = data.program;
+
+            if (data.program === 'Makhroj') {
+                document.getElementById('wrap-res-level').classList.add('hidden');
+                document.getElementById('wrap-res-pertemuan').classList.add('hidden');
+                document.getElementById('label-res-modul').innerText = 'Kategori Makhroj:';
+                document.getElementById('res-modul').innerText = data.modul; 
+            } else if (data.program === 'Tikror') {
+                document.getElementById('wrap-res-level').classList.remove('hidden');
+                document.getElementById('res-level').innerText = data.level;
+                document.getElementById('label-res-modul').innerText = 'Modul:';
+                document.getElementById('res-modul').innerText = "-";
+                if (data.pertemuan === "-") document.getElementById('wrap-res-pertemuan').classList.add('hidden');
+                else {
+                    document.getElementById('wrap-res-pertemuan').classList.remove('hidden');
+                    document.getElementById('res-pertemuan').innerText = data.pertemuan;
+                }
+            } else { 
+                document.getElementById('wrap-res-level').classList.remove('hidden');
+                document.getElementById('res-level').innerText = data.level;
+                document.getElementById('label-res-modul').innerText = 'Modul:';
+                document.getElementById('res-modul').innerText = data.modul;
+                if (data.pertemuan === "-") document.getElementById('wrap-res-pertemuan').classList.add('hidden');
+                else {
+                    document.getElementById('wrap-res-pertemuan').classList.remove('hidden');
+                    document.getElementById('res-pertemuan').innerText = data.pertemuan;
+                }
+            }
+            window.scrollTo(0, 0);
+        }
+
+        async function unduhSertifikat() {
+            Swal.fire({
+                title: 'Membuat Sertifikat...',
+                text: 'Mohon tunggu, kami sedang menyiapkan sertifikat kelulusan Anda.',
+                allowOutsideClick: false,
+                didOpen: () => { Swal.showLoading() }
+            });
+
+            try {
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                    body: JSON.stringify(certPayloadData)
+                });
+                const res = await response.json();
+                
+                if (res.status === 'success') {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Alhamdulillah Berhasil!',
+                        text: 'Sertifikat Anda telah siap.',
+                        confirmButtonText: 'Buka Sertifikat',
+                        confirmButtonColor: '#0F766E'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.open(res.url, '_blank');
+                        }
+                    });
+                } else {
+                    throw new Error(res.message);
+                }
+            } catch (error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Mohon Maaf',
+                    text: 'Gagal membuat sertifikat: ' + error.message,
+                    confirmButtonColor: '#0F766E'
+                });
+            }
+        }
+    </script>
+</body>
+</html>
