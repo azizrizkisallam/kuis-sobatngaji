@@ -244,18 +244,37 @@
             }
         }
 
+        function isiPertemuan(start, end) {
+            pertemuanSelect.innerHTML = '';
+            for (let i = start; i <= end; i++) {
+                pertemuanSelect.innerHTML += `<option value="${i}">${i}</option>`;
+            }
+        }
+
         function updatePertemuanOptions() {
             const prog = programSelect.value;
             pertemuanSelect.innerHTML = '';
             let maxPertemuan = 4;
+            
             if (prog === 'Tahsin') {
                 if (levelSelect.value === 'Tahsin 1' && modulSelect.value === 'A') maxPertemuan = 8;
                 else maxPertemuan = 4;
+                for (let i = 1; i <= maxPertemuan; i++) {
+                    pertemuanSelect.innerHTML += `<option value="${i}">${i}</option>`;
+                }
             } else if (prog === 'Tikror') {
-                maxPertemuan = 4;
-            }
-            for (let i = 1; i <= maxPertemuan; i++) {
-                pertemuanSelect.innerHTML += `<option value="${i}">${i}</option>`;
+                if (levelSelect.value === 'Tikror 1') {
+                    isiPertemuan(1, 14);
+                    return;
+                }
+                if (levelSelect.value === 'Tikror 2') {
+                    isiPertemuan(15, 21);
+                    return;
+                }
+                if (levelSelect.value === 'Tikror 3') {
+                    isiPertemuan(22, 32);
+                    return;
+                }
             }
         }
 
