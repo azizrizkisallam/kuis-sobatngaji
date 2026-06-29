@@ -90,38 +90,42 @@
                     <div id="div-kategori" class="hidden">
                         <label class="block text-lg font-medium text-gray-700 mb-2">Kategori Makhroj</label>
                         <select id="kategori" class="w-full p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-tosca-500 text-xl font-bold bg-white">
-                            <option value="Pembagian Makhroj">Pembagian Makhroj</option>
+                            <option value="Muqoddimah Makhroj">Muqoddimah Makhroj</option>
+                            <option value="Sifatul Huruf">Sifatul Huruf</option>
                             <option value="Al Jauf">Al Jauf</option>
                             <option value="Al Khaisyum">Al Khaisyum</option>
-                            <option value="Sifat Huruf">Sifat Huruf</option>
-                            <option value="Hamzah (ء)">Hamzah (ء)</option>
-                            <option value="Ba (ب)">Ba (ب)</option>
-                            <option value="Ta (ت)">Ta (ت)</option>
-                            <option value="Tsa (ث)">Tsa (ث)</option>
-                            <option value="Jim (ج)">Jim (ج)</option>
-                            <option value="Ha Besar (ح)">Ha Besar (ح)</option>
-                            <option value="Kha (خ)">Kha (خ)</option>
-                            <option value="Dal (د)">Dal (د)</option>
-                            <option value="Dzal (ذ)">Dzal (ذ)</option>
-                            <option value="Ra (ر)">Ra (ر)</option>
-                            <option value="Zai (ز)">Zai (ز)</option>
-                            <option value="Sin (س)">Sin (س)</option>
-                            <option value="Syin (ش)">Syin (ش)</option>
-                            <option value="Shad (ص)">Shad (ص)</option>
-                            <option value="Dhad (ض)">Dhad (ض)</option>
-                            <option value="Tha (ط)">Tha (ط)</option>
-                            <option value="Zha (ظ)">Zha (ظ)</option>
-                            <option value="'Ain (ع)">'Ain (ع)</option>
-                            <option value="Ghain (غ)">Ghain (غ)</option>
-                            <option value="Fa (ف)">Fa (ف)</option>
-                            <option value="Qaf (ق)">Qaf (ق)</option>
-                            <option value="Kaf (ك)">Kaf (ك)</option>
-                            <option value="Lam (ل)">Lam (ل)</option>
-                            <option value="Mim (م)">Mim (م)</option>
-                            <option value="Nun (ن)">Nun (ن)</option>
-                            <option value="Ha Kecil (ه)">Ha Kecil (ه)</option>
-                            <option value="Wau (و)">Wau (و)</option>
-                            <option value="Ya (ي)">Ya (ي)</option>
+                            <option value="Hamzah">Hamzah</option>
+                            <option value="Ha Kecil">Ha Kecil</option>
+                            <option value="Ain">Ain</option>
+                            <option value="Ha Besar">Ha Besar</option>
+                            <option value="Ghain">Ghain</option>
+                            <option value="Kha">Kha</option>
+                            <option value="Latihan QS Al-A'la">Latihan QS Al-A'la</option>
+                            <option value="Makhroj Lisan">Makhroj Lisan</option>
+                            <option value="Qaf">Qaf</option>
+                            <option value="Kaf">Kaf</option>
+                            <option value="Jim">Jim</option>
+                            <option value="Syin">Syin</option>
+                            <option value="Ya">Ya</option>
+                            <option value="Dhad">Dhad</option>
+                            <option value="Lam">Lam</option>
+                            <option value="Nun">Nun</option>
+                            <option value="Ra">Ra</option>
+                            <option value="Tha">Tha</option>
+                            <option value="Dal">Dal</option>
+                            <option value="Ta">Ta</option>
+                            <option value="Shad">Shad</option>
+                            <option value="Zai">Zai</option>
+                            <option value="Sin">Sin</option>
+                            <option value="Zha">Zha</option>
+                            <option value="Dzal">Dzal</option>
+                            <option value="Tsa">Tsa</option>
+                            <option value="Latihan QS Al-Buruj">Latihan QS Al-Buruj</option>
+                            <option value="Wau">Wau</option>
+                            <option value="Ba">Ba</option>
+                            <option value="Fa">Fa</option>
+                            <option value="Mim">Mim</option>
+                            <option value="Pola Metode Banaba Semua Huruf">Pola Metode Banaba Semua Huruf</option>
                         </select>
                     </div>
                 </div>
@@ -244,24 +248,121 @@
             }
         }
 
+        // === MAPPING LABEL KURIKULUM ===
+        const LABEL_TIKROR = {
+            1:  'Huruf Hamzah (ء) dan Ba (ب)',
+            2:  'Huruf Ta (ت)',
+            3:  'Huruf Tsa (ث) dan Jim (ج)',
+            4:  'Huruf Ha (ح) dan Kha (خ)',
+            5:  'Huruf Dal (د) dan Dzal (ذ)',
+            6:  'Huruf Ra (ر) dan Zai (ز)',
+            7:  'Huruf Sin (س) dan Syin (ش)',
+            8:  'Huruf Shad (ص) dan Dhad (ض)',
+            9:  'Huruf Tha (ط) dan Zha (ظ)',
+            10: 'Huruf Ain (ع) dan Ghain (غ)',
+            11: 'Huruf Fa (ف) dan Qaf (ق)',
+            12: 'Huruf Kaf (ك) dan Lam (ل)',
+            13: 'Huruf Mim (م) dan Nun (ن)',
+            14: 'Huruf Wau (و), Ha (هـ), Ya (ي)',
+            15: 'Harakat',
+            16: 'Huruf Sambung',
+            17: 'Mad 2 Harakat (Fathah + Alif)',
+            18: 'Mad 2 Harakat (Fathah Berdiri)',
+            19: 'Mad 2 Harakat (Kasrah + Ya Sukun)',
+            20: 'Mad 2 Harakat (Dhammah + Wau Sukun)',
+            21: 'Talaqqi Al Fatihah',
+            22: 'Tanwin',
+            23: 'Ta Marbuthah',
+            24: 'Huruf Sukun',
+            25: 'Huruf Sukun dengan Sifat Isti\'la',
+            26: 'Huruf Sukun dengan Sifat Syiddah',
+            27: 'Latihan Huruf Sukun Syiddah & Qalqalah',
+            28: 'Huruf Sukun dengan Sifat Rakhawah',
+            29: 'Huruf Sukun pada Huruf Alif Lam',
+            30: 'Tasydid pada Huruf Nun dan Mim',
+            31: 'Tasydid pada Huruf Alif Lam',
+            32: 'Latihan Huruf Lam Bertasydid'
+        };
+
+        const LABEL_TAHSIN = {
+            'Tahsin 1': {
+                'A': {
+                    1: 'Rumus 1 Detik Hafal 7 Tanda Mad 2 Harakat',
+                    2: 'Pola Asyik Mad 2 Harakat',
+                    3: '28 Pola Mad 2 Harakat',
+                    4: 'Latihan Level 1 Mad 2 Harakat',
+                    5: 'Latihan Level 2 Mad 2 Harakat',
+                    6: 'Mad Iwadh & Mad Shilah',
+                    7: 'Mad Aridh & Mad Lin',
+                    8: 'Talaqqi QS Taha Ayat 55–57'
+                },
+                'B': {
+                    1: 'Mad Wajib Muttashil & Mad Jaiz Munfashil',
+                    2: 'Mad Jaiz menurut Thariqah Syathibi & Jazari',
+                    3: 'Makna Mad Wajib & Mad Jaiz',
+                    4: 'Mad Jaiz Munfashil Haqiqi'
+                },
+                'C': {
+                    1: 'Mad Lazim Mutsaqqal Kalimi',
+                    2: 'Latihan Mad 6 Harakat Level 1',
+                    3: 'Latihan Mad 6 Harakat Level 2',
+                    4: 'Makna Mad Lazim'
+                },
+                'D': {
+                    1: 'Alif Lam Syamsiyyah',
+                    2: 'Alif Lam Qamariyyah',
+                    3: 'Huruf Fawatihus Suwar',
+                    4: 'Talaqqi QS Asy-Syura Ayat 1–6'
+                }
+            },
+            'Tahsin 2': {
+                'A': {
+                    1: 'Ghunnah Musyaddadah & Idgham Mimi',
+                    2: 'Latihan Ghunnah',
+                    3: 'Idgham Bighunnah',
+                    4: 'Talaqqi QS Az-Zalzalah'
+                },
+                'B': {
+                    1: 'Ikhfa Syafawi',
+                    2: 'Iqlab',
+                    3: 'Ikhfa Haqiqi',
+                    4: 'Talaqqi QS At-Tahrim'
+                },
+                'C': {
+                    1: 'Idzhar Halqi',
+                    2: 'Idzhar Syafawi'
+                },
+                'D': {
+                    1: 'Qalqalah Sughra & Kubra',
+                    2: 'Talaqqi QS Al-Lahab'
+                }
+            }
+        };
+
         function isiPertemuan(start, end) {
             pertemuanSelect.innerHTML = '';
             for (let i = start; i <= end; i++) {
-                pertemuanSelect.innerHTML += `<option value="${i}">${i}</option>`;
+                const label = LABEL_TIKROR[i] ? `Pertemuan ${i} - ${LABEL_TIKROR[i]}` : `Pertemuan ${i}`;
+                pertemuanSelect.innerHTML += `<option value="${i}">${label}</option>`;
             }
         }
 
         function updatePertemuanOptions() {
             const prog = programSelect.value;
             pertemuanSelect.innerHTML = '';
-            let maxPertemuan = 4;
-            
+
             if (prog === 'Tahsin') {
-                if (levelSelect.value === 'Tahsin 1' && modulSelect.value === 'A') maxPertemuan = 8;
-                else if (levelSelect.value === 'Tahsin 2' && (modulSelect.value === 'C' || modulSelect.value === 'D')) maxPertemuan = 2;
+                const level = levelSelect.value;
+                const modul = modulSelect.value;
+                let maxPertemuan = 4;
+                if (level === 'Tahsin 1' && modul === 'A') maxPertemuan = 8;
+                else if (level === 'Tahsin 2' && (modul === 'C' || modul === 'D')) maxPertemuan = 2;
                 else maxPertemuan = 4;
+
                 for (let i = 1; i <= maxPertemuan; i++) {
-                    pertemuanSelect.innerHTML += `<option value="${i}">${i}</option>`;
+                    const labelMap = LABEL_TAHSIN[level] && LABEL_TAHSIN[level][modul] && LABEL_TAHSIN[level][modul][i];
+                    const label = labelMap ? `Pertemuan ${i} - ${labelMap}` : `Pertemuan ${i}`;
+                    pertemuanSelect.innerHTML += `<option value="${i}">${label}</option>`;
                 }
             } else if (prog === 'Tikror') {
                 if (levelSelect.value === 'Tikror 1') {
