@@ -258,6 +258,7 @@
             
             if (prog === 'Tahsin') {
                 if (levelSelect.value === 'Tahsin 1' && modulSelect.value === 'A') maxPertemuan = 8;
+                else if (levelSelect.value === 'Tahsin 2' && (modulSelect.value === 'C' || modulSelect.value === 'D')) maxPertemuan = 2;
                 else maxPertemuan = 4;
                 for (let i = 1; i <= maxPertemuan; i++) {
                     pertemuanSelect.innerHTML += `<option value="${i}">${i}</option>`;
