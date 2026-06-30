@@ -670,50 +670,6 @@
                         </div>
                     </div>
 
-                    <div id="div-kategori" class="hidden">
-                        <label class="field-label">Kategori Makhroj</label>
-                        <div class="custom-select-wrapper">
-                            <select id="kategori" class="custom-select">
-                                <option value="Muqoddimah Makhroj">Muqoddimah Makhroj</option>
-                                <option value="Sifatul Huruf">Sifatul Huruf</option>
-                                <option value="Al Jauf">Al Jauf</option>
-                                <option value="Al Khaisyum">Al Khaisyum</option>
-                                <option value="Hamzah">Hamzah</option>
-                                <option value="Ha Kecil">Ha Kecil</option>
-                                <option value="Ain">Ain</option>
-                                <option value="Ha Besar">Ha Besar</option>
-                                <option value="Ghain">Ghain</option>
-                                <option value="Kha">Kha</option>
-                                <option value="Latihan QS Al-A'la">Latihan QS Al-A'la</option>
-                                <option value="Makhroj Lisan">Makhroj Lisan</option>
-                                <option value="Qaf">Qaf</option>
-                                <option value="Kaf">Kaf</option>
-                                <option value="Jim">Jim</option>
-                                <option value="Syin">Syin</option>
-                                <option value="Ya">Ya</option>
-                                <option value="Dhad">Dhad</option>
-                                <option value="Lam">Lam</option>
-                                <option value="Nun">Nun</option>
-                                <option value="Ra">Ra</option>
-                                <option value="Tha">Tha</option>
-                                <option value="Dal">Dal</option>
-                                <option value="Ta">Ta</option>
-                                <option value="Shad">Shad</option>
-                                <option value="Zai">Zai</option>
-                                <option value="Sin">Sin</option>
-                                <option value="Zha">Zha</option>
-                                <option value="Dzal">Dzal</option>
-                                <option value="Tsa">Tsa</option>
-                                <option value="Latihan QS Al-Buruj">Latihan QS Al-Buruj</option>
-                                <option value="Wau">Wau</option>
-                                <option value="Ba">Ba</option>
-                                <option value="Fa">Fa</option>
-                                <option value="Mim">Mim</option>
-                                <option value="Pola Metode Banaba Semua Huruf">Pola Metode Banaba Semua Huruf</option>
-                            </select>
-                        </div>
-                    </div>
-
                 </div>
 
                 <button type="submit" class="btn-primary mt-2">
@@ -869,7 +825,7 @@
     // ════════════════════════════════════════
     // API + STATE
     // ════════════════════════════════════════
-    const API_URL = 'https://script.google.com/macros/s/AKfycbzeADK2epnaT64sqH9qqSHEdlePc0kfWiJuGsJS4f8VzSxj5mXIL0ZxC7LE9sLx7y2D/exec';
+    const API_URL = 'https://script.google.com/macros/s/AKfycbxp0baP_N2FJrEnciFEh6loIgowNANZ-MZOZFSPJFR_F5aUZRFfbbjybPDYqLD9ybhx/exec';
 
     const formSetup   = document.getElementById('setup-form');
     const formQuiz    = document.getElementById('quiz-form');
@@ -882,7 +838,6 @@
     const divLevel    = document.getElementById('div-level');
     const divModul    = document.getElementById('div-modul');
     const divPertemuan = document.getElementById('div-pertemuan');
-    const divKategori = document.getElementById('div-kategori');
     const dynamicFields = document.getElementById('dynamic-fields');
 
     let questionsData = [];
@@ -925,6 +880,45 @@
         30: 'Tasydid pada Huruf Nun dan Mim',
         31: 'Tasydid pada Huruf Alif Lam',
         32: 'Latihan Huruf Lam Bertasydid'
+    };
+
+    const LABEL_MAKHROJ = {
+        1:  'Muqoddimah Makhroj',
+        2:  'Sifatul Huruf',
+        3:  'Al Jauf',
+        4:  'Al Khaisyum',
+        5:  'Huruf Hamzah',
+        6:  'Huruf Ha Kecil',
+        7:  'Huruf Ain',
+        8:  'Huruf Ha Besar',
+        9:  'Huruf Ghain',
+        10: 'Huruf Kha',
+        11: "Latihan QS Al-A'la",
+        12: 'Makhroj Lisan',
+        13: 'Huruf Qaf',
+        14: 'Huruf Kaf',
+        15: 'Huruf Jim',
+        16: 'Huruf Syin',
+        17: 'Huruf Ya',
+        18: 'Huruf Dhad',
+        19: 'Huruf Lam',
+        20: 'Huruf Nun',
+        21: 'Huruf Ra',
+        22: 'Huruf Tha',
+        23: 'Huruf Dal',
+        24: 'Huruf Ta',
+        25: 'Huruf Shad',
+        26: 'Huruf Zay',
+        27: 'Huruf Sin',
+        28: 'Huruf Zha',
+        29: 'Huruf Dzal',
+        30: 'Huruf Tsa',
+        31: 'Latihan QS Al-Buruj',
+        32: 'Huruf Wau',
+        33: 'Huruf Ba',
+        34: 'Huruf Fa',
+        35: 'Huruf Mim',
+        36: 'Pola Metode Banaba Semua Huruf'
     };
 
     const LABEL_TAHSIN = {
@@ -1003,7 +997,6 @@
         divLevel.classList.add('hidden');
         divModul.classList.add('hidden');
         divPertemuan.classList.add('hidden');
-        divKategori.classList.add('hidden');
         levelSelect.innerHTML = '';
 
         if (!prog || !jenis) { hideDynamic(); return; }
@@ -1024,7 +1017,8 @@
             levelSelect.innerHTML = '<option value="Tikror 1">Tikror 1</option><option value="Tikror 2">Tikror 2</option><option value="Tikror 3">Tikror 3</option>';
             updatePertemuanOptions();
         } else if (prog === 'Makhroj') {
-            divKategori.classList.remove('hidden');
+            divPertemuan.classList.remove('hidden');
+            isiPertemuanMakhroj();
         }
     }
 
@@ -1032,6 +1026,14 @@
         pertemuanSelect.innerHTML = '';
         for (let i = start; i <= end; i++) {
             const lbl = LABEL_TIKROR[i] ? `Pertemuan ${i} — ${LABEL_TIKROR[i]}` : `Pertemuan ${i}`;
+            pertemuanSelect.innerHTML += `<option value="${i}">${lbl}</option>`;
+        }
+    }
+
+    function isiPertemuanMakhroj() {
+        pertemuanSelect.innerHTML = '';
+        for (let i = 1; i <= 36; i++) {
+            const lbl = LABEL_MAKHROJ[i] ? `Pertemuan ${i} — ${LABEL_MAKHROJ[i]}` : `Pertemuan ${i}`;
             pertemuanSelect.innerHTML += `<option value="${i}">${lbl}</option>`;
         }
     }
@@ -1080,7 +1082,7 @@
             params.append('level', levelSelect.value);
             if (jenis === 'Pertemuan') params.append('pertemuan', pertemuanSelect.value);
         } else if (prog === 'Makhroj') {
-            params.append('kategori', document.getElementById('kategori').value);
+            params.append('pertemuan', pertemuanSelect.value);
         }
 
         Swal.fire({
@@ -1199,8 +1201,8 @@
             guru:      document.getElementById('guru').value,
             program:   prog,
             level:     (prog === 'Makhroj') ? '-' : levelSelect.value,
-            modul:     (prog === 'Tahsin' && jenis === 'Pertemuan') ? modulSelect.value : (prog === 'Makhroj' ? document.getElementById('kategori').value : '-'),
-            pertemuan: (prog !== 'Makhroj' && jenis === 'Pertemuan') ? pertemuanSelect.value : '-',
+            modul:     (prog === 'Tahsin' && jenis === 'Pertemuan') ? modulSelect.value : '-',
+            pertemuan: (jenis === 'Pertemuan') ? pertemuanSelect.value : '-',
             nilai:     nilai,
             status:    statusText
         };
@@ -1273,7 +1275,7 @@
                 certPayloadData = {
                     nama:    data.nama,
                     program: data.program,
-                    level:   data.program === 'Makhroj' ? data.modul : data.level
+                    level:   data.level
                 };
             }
         } else {
@@ -1289,9 +1291,14 @@
 
         if (data.program === 'Makhroj') {
             document.getElementById('wrap-res-level').classList.add('hidden');
-            document.getElementById('wrap-res-pertemuan').classList.add('hidden');
-            document.getElementById('label-res-modul').innerText = 'Kategori';
-            document.getElementById('res-modul').innerText = data.modul;
+            document.getElementById('label-res-modul').innerText = 'Modul';
+            document.getElementById('res-modul').innerText = '—';
+            if (data.pertemuan === '-') {
+                document.getElementById('wrap-res-pertemuan').classList.add('hidden');
+            } else {
+                document.getElementById('wrap-res-pertemuan').classList.remove('hidden');
+                document.getElementById('res-pertemuan').innerText = data.pertemuan;
+            }
         } else if (data.program === 'Tikror') {
             document.getElementById('wrap-res-level').classList.remove('hidden');
             document.getElementById('res-level').innerText  = data.level;
