@@ -1017,9 +1017,11 @@
             levelSelect.innerHTML = '<option value="Tikror 1">Tikror 1</option><option value="Tikror 2">Tikror 2</option><option value="Tikror 3">Tikror 3</option>';
             updatePertemuanOptions();
         } else if (prog === 'Makhroj') {
-            divPertemuan.classList.remove('hidden');
-            isiPertemuanMakhroj();
-        }
+    if (jenis === 'Pertemuan') {
+        divPertemuan.classList.remove('hidden');
+        isiPertemuanMakhroj();
+    }
+}
     }
 
     function isiPertemuan(start, end) {
@@ -1082,8 +1084,12 @@
             params.append('level', levelSelect.value);
             if (jenis === 'Pertemuan') params.append('pertemuan', pertemuanSelect.value);
         } else if (prog === 'Makhroj') {
-            params.append('pertemuan', pertemuanSelect.value);
-        }
+
+    if (jenis === 'Pertemuan') {
+        params.append('pertemuan', pertemuanSelect.value);
+    }
+
+}
 
         Swal.fire({
             title: 'Menyiapkan Soal...',
