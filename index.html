@@ -526,7 +526,6 @@
 </head>
 <body>
 
-<!-- ── BACKGROUND CANVAS ── -->
 <div class="bg-canvas" aria-hidden="true">
     <div class="bg-pattern"></div>
     <div class="bg-blob blob-1"></div>
@@ -534,12 +533,10 @@
     <div class="bg-blob blob-3"></div>
 </div>
 
-<!-- ── AUDIO ── -->
 <audio id="bg-audio" loop preload="none">
     <source src="https://filebin.net/9d4m5c15uijs3iny/Subhanallah%20the%20best%20islamic%20background%20in%20History%20-%20ALI%20DAWUD%20%282%20Hours%29.mp3" type="audio/mpeg">
 </audio>
 
-<!-- ── HEADER ── -->
 <header class="site-header sticky top-0 z-50">
     <div class="max-w-2xl mx-auto px-5 py-4 flex items-center justify-between">
         <div class="flex items-center gap-3">
@@ -564,14 +561,9 @@
     </div>
 </header>
 
-<!-- ── MAIN ── -->
 <main class="relative z-10 max-w-2xl mx-auto px-4 py-8 pb-16">
 
-    <!-- ═══════════════════════════════════════ -->
-    <!-- SECTION 1: SETUP FORM -->
-    <!-- ═══════════════════════════════════════ -->
     <section id="setup-section">
-        <!-- Hero intro -->
         <div class="text-center mb-8 anim-fade-up">
             <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-500/10 border border-brand-500/20 text-brand-700 text-xs font-700 uppercase tracking-widest mb-4">
                 <span class="w-1.5 h-1.5 rounded-full bg-brand-500"></span>
@@ -583,17 +575,14 @@
             <p class="text-brand-700/70 text-base font-medium">Pilih materi dan mulai kuis sekarang</p>
         </div>
 
-        <!-- Form card -->
         <div class="glass-strong rounded-3xl p-6 sm:p-8 anim-fade-up delay-1">
             <form id="setup-form" class="space-y-5">
 
-                <!-- Nama -->
                 <div>
                     <label class="field-label">Nama Lengkap</label>
                     <input type="text" id="nama" required class="custom-input" placeholder="Masukkan nama lengkap Anda">
                 </div>
 
-                <!-- Guru -->
                 <div>
                     <label class="field-label">Guru Pengampu</label>
                     <div class="custom-select-wrapper">
@@ -616,7 +605,6 @@
                     </div>
                 </div>
 
-                <!-- 2-col: Jenis + Program -->
                 <div class="grid grid-cols-2 gap-4">
                     <div>
                         <label class="field-label">Jenis Kuis</label>
@@ -641,7 +629,6 @@
                     </div>
                 </div>
 
-                <!-- Dynamic fields -->
                 <div id="dynamic-fields" class="section-box space-y-4" style="display:none;">
 
                     <div id="div-level" class="hidden">
@@ -680,18 +667,13 @@
             </form>
         </div>
 
-        <!-- Footer note -->
         <p class="text-center text-xs text-brand-600/50 mt-6 font-medium anim-fade-up delay-2">
             Dilihat Menyenangkan · Dipelajari Memudahkan
         </p>
     </section>
 
-    <!-- ═══════════════════════════════════════ -->
-    <!-- SECTION 2: QUIZ -->
-    <!-- ═══════════════════════════════════════ -->
     <section id="quiz-section" class="hidden">
 
-        <!-- Sticky progress bar -->
         <div id="quiz-sticky-header" class="glass sticky top-[73px] z-40 rounded-2xl px-5 py-3 mb-6 flex items-center gap-4">
             <div class="flex-1">
                 <div class="flex justify-between items-center mb-1.5">
@@ -705,7 +687,6 @@
             <div id="progress-count-pill" class="badge badge-teal text-[11px]">0 dijawab</div>
         </div>
 
-        <!-- Questions -->
         <form id="quiz-form">
             <div id="questions-container" class="space-y-5"></div>
             <div class="mt-8">
@@ -717,18 +698,13 @@
         </form>
     </section>
 
-    <!-- ═══════════════════════════════════════ -->
-    <!-- SECTION 3: RESULT -->
-    <!-- ═══════════════════════════════════════ -->
     <section id="result-section" class="hidden">
         <div class="glass-strong rounded-3xl p-6 sm:p-10 text-center anim-scale-in">
 
-            <!-- Emoji + heading -->
             <div id="result-emoji" class="text-5xl mb-3">🌟</div>
             <h2 id="result-heading" class="text-2xl font-black text-brand-900 mb-1">Alhamdulillah!</h2>
             <p id="result-subtext" class="text-brand-700/60 text-sm font-medium mb-8">Kuis selesai</p>
 
-            <!-- Score ring -->
             <div class="score-ring mb-6" id="score-ring">
                 <div class="score-inner">
                     <div id="result-score" class="text-4xl font-black text-brand-700">0</div>
@@ -736,15 +712,12 @@
                 </div>
             </div>
 
-            <!-- Correct count -->
             <p id="result-correct-count" class="text-sm font-600 text-brand-700/70 mb-6">Jawaban benar: 0 dari 0 soal</p>
 
-            <!-- Status badge -->
             <div class="mb-8">
                 <div id="result-status"></div>
             </div>
 
-            <!-- Cert button -->
             <div id="cert-container" class="hidden mb-6">
                 <button onclick="unduhSertifikat()" class="btn-cert">
                     <span class="text-xl">🏆</span>
@@ -752,7 +725,6 @@
                 </button>
             </div>
 
-            <!-- Info details -->
             <div class="section-box text-left mb-6">
                 <div class="info-row">
                     <span class="info-key">Guru</span>
@@ -776,7 +748,6 @@
                 </div>
             </div>
 
-            <!-- Back button -->
             <button onclick="location.reload()" class="w-full py-3 px-6 rounded-2xl border-2 border-brand-200 text-brand-700 font-700 text-sm hover:bg-brand-50 transition-all duration-200">
                 ← Kembali ke Awal
             </button>
@@ -789,7 +760,6 @@
 
 </main>
 
-<!-- ── SCRIPTS ── -->
 <script>
     // ════════════════════════════════════════
     // AUDIO
@@ -851,7 +821,7 @@
         1:  'Huruf Hamzah (ء) dan Ba (ب)',
         2:  'Huruf Ta (ت)',
         3:  'Huruf Tsa (ث) dan Jim (ج)',
-        4:  'Huruf Ha (ح) dan Kha (خ)',
+        4:  'Huruf Ha (ح) dan Kha (kh)',
         5:  'Huruf Dal (د) dan Dzal (ذ)',
         6:  'Huruf Ra (ر) dan Zai (ز)',
         7:  'Huruf Sin (س) dan Syin (ش)',
@@ -1017,11 +987,11 @@
             levelSelect.innerHTML = '<option value="Tikror 1">Tikror 1</option><option value="Tikror 2">Tikror 2</option><option value="Tikror 3">Tikror 3</option>';
             updatePertemuanOptions();
         } else if (prog === 'Makhroj') {
-    if (jenis === 'Pertemuan') {
-        divPertemuan.classList.remove('hidden');
-        isiPertemuanMakhroj();
-    }
-}
+            if (jenis === 'Pertemuan') {
+                divPertemuan.classList.remove('hidden');
+                isiPertemuanMakhroj();
+            }
+        }
     }
 
     function isiPertemuan(start, end) {
@@ -1084,12 +1054,10 @@
             params.append('level', levelSelect.value);
             if (jenis === 'Pertemuan') params.append('pertemuan', pertemuanSelect.value);
         } else if (prog === 'Makhroj') {
-
-    if (jenis === 'Pertemuan') {
-        params.append('pertemuan', pertemuanSelect.value);
-    }
-
-}
+            if (jenis === 'Pertemuan') {
+                params.append('pertemuan', pertemuanSelect.value);
+            }
+        }
 
         Swal.fire({
             title: 'Menyiapkan Soal...',
@@ -1134,248 +1102,4 @@
                         <h3 class="text-base font-700 text-brand-900 leading-relaxed pt-0.5 flex-1">${q.soal}</h3>
                     </div>
                     <div class="space-y-3" id="opts-${index}">
-                        ${['A','B','C','D'].map(opt => `
-                            <label class="option-label" id="lbl-${index}-${opt}">
-                                <input type="radio" name="q${index}" value="${opt}"
-                                    class="sr-only"
-                                    onchange="selectOption(${index}, '${opt}')">
-                                <div class="option-dot-outer">
-                                    <div class="option-dot-inner"></div>
-                                </div>
-                                <div class="option-key">${opt}</div>
-                                <span class="option-text">${q[opt]}</span>
-                            </label>
-                        `).join('')}
-                    </div>
-                </div>
-            `;
-            container.innerHTML += html;
-        });
-        updateProgressUI();
-    }
-
-    window.selectOption = function(index, value) {
-        // Clear all options for this question
-        ['A','B','C','D'].forEach(opt => {
-            const lbl = document.getElementById(`lbl-${index}-${opt}`);
-            if (lbl) lbl.classList.remove('selected');
-        });
-        // Mark selected
-        const selected = document.getElementById(`lbl-${index}-${value}`);
-        if (selected) selected.classList.add('selected');
-
-        answersData[index] = value;
-        updateProgressUI();
-    };
-
-    // Keep backward compat
-    window.updateProgress = window.selectOption;
-
-    function updateProgressUI() {
-        const total    = questionsData.length;
-        const answered = Object.keys(answersData).length;
-        const pct      = total ? (answered / total) * 100 : 0;
-
-        document.getElementById('progress-bar-fill').style.width = `${pct}%`;
-        document.getElementById('progress-text').innerText = `${answered}/${total}`;
-        document.getElementById('progress-count-pill').innerText = `${answered} dijawab`;
-    }
-
-    // ════════════════════════════════════════
-    // QUIZ SUBMIT
-    // ════════════════════════════════════════
-    formQuiz.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const totalSoal = questionsData.length;
-        const dijawab   = Object.keys(answersData).length;
-
-        if (dijawab < totalSoal) {
-            Swal.fire({ icon: 'warning', title: 'Masih Ada Soal', text: 'Harap jawab semua soal terlebih dahulu.', confirmButtonColor: '#0F766E' });
-            return;
-        }
-
-        let benar = 0;
-        questionsData.forEach((q, i) => { if (answersData[i] === q.kunci) benar++; });
-
-        const nilai      = Math.round((benar / totalSoal) * 100);
-        const statusText = nilai >= 80 ? 'Lulus' : 'Belum Lulus';
-        const jenis      = jenisSelect.value;
-        const prog       = programSelect.value;
-
-        const payload = {
-            nama:      document.getElementById('nama').value,
-            guru:      document.getElementById('guru').value,
-            program:   prog,
-            level:     (prog === 'Makhroj') ? '-' : levelSelect.value,
-            modul:     (prog === 'Tahsin' && jenis === 'Pertemuan') ? modulSelect.value : '-',
-            pertemuan: (jenis === 'Pertemuan') ? pertemuanSelect.value : '-',
-            nilai:     nilai,
-            status:    statusText
-        };
-
-        Swal.fire({
-            title: 'Mengirim Jawaban...',
-            html: '<span style="font-family:Plus Jakarta Sans,sans-serif;color:#0F766E">Semoga hasilnya maksimal! 🤲</span>',
-            allowOutsideClick: false,
-            didOpen: () => { Swal.showLoading(); }
-        });
-
-        try {
-            await fetch(API_URL, {
-                method: 'POST',
-                headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-                body: JSON.stringify(payload)
-            });
-            tampilkanHasil(payload, jenis, benar, totalSoal);
-        } catch (error) {
-            tampilkanHasil(payload, jenis, benar, totalSoal);
-        }
-    });
-
-    // ════════════════════════════════════════
-    // CONFETTI
-    // ════════════════════════════════════════
-    function launchConfetti() {
-        const colors = ['#14B8A6','#0F766E','#99f6e9','#fbbf24','#34d399','#5eead6'];
-        for (let i = 0; i < 80; i++) {
-            const el = document.createElement('div');
-            el.className = 'confetti-piece';
-            el.style.left = Math.random() * 100 + 'vw';
-            el.style.top  = '-12px';
-            el.style.background = colors[Math.floor(Math.random() * colors.length)];
-            el.style.width  = (6 + Math.random() * 8) + 'px';
-            el.style.height = (6 + Math.random() * 8) + 'px';
-            el.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
-            el.style.animationDuration = (2 + Math.random() * 2) + 's';
-            el.style.animationDelay    = (Math.random() * 0.8) + 's';
-            document.body.appendChild(el);
-            el.addEventListener('animationend', () => el.remove());
-        }
-    }
-
-    // ════════════════════════════════════════
-    // TAMPILKAN HASIL
-    // ════════════════════════════════════════
-    function tampilkanHasil(data, jenisKuis, benar, totalSoal) {
-        Swal.close();
-        document.getElementById('quiz-section').classList.add('hidden');
-        document.getElementById('result-section').classList.remove('hidden');
-
-        // Score ring
-        const pct = data.nilai;
-        document.getElementById('score-ring').style.setProperty('--pct', pct + '%');
-        document.getElementById('result-score').innerText = data.nilai;
-        document.getElementById('result-correct-count').innerText = `Jawaban benar: ${benar} dari ${totalSoal} soal`;
-
-        // Status
-        const statusEl = document.getElementById('result-status');
-        if (data.status === 'Lulus') {
-            document.getElementById('result-emoji').innerText   = '🏆';
-            document.getElementById('result-heading').innerText = 'Alhamdulillah, Lulus!';
-            document.getElementById('result-subtext').innerText = 'Terus semangat belajar Al-Qur\'an';
-            statusEl.innerHTML = '<div class="status-lulus">✅ LULUS</div>';
-            setTimeout(launchConfetti, 300);
-
-            if (jenisKuis === 'Kenaikan') {
-                document.getElementById('cert-container').classList.remove('hidden');
-                certPayloadData = {
-                    nama:    data.nama,
-                    program: data.program,
-                    level:   data.level
-                };
-            }
-        } else {
-            document.getElementById('result-emoji').innerText   = '📚';
-            document.getElementById('result-heading').innerText = 'Belum Lulus';
-            document.getElementById('result-subtext').innerText = 'Jangan menyerah, terus berlatih!';
-            statusEl.innerHTML = '<div class="status-belum">📚 BELUM LULUS</div>';
-        }
-
-        // Info rows
-        document.getElementById('res-guru').innerText    = data.guru;
-        document.getElementById('res-program').innerText = data.program;
-
-        if (data.program === 'Makhroj') {
-            document.getElementById('wrap-res-level').classList.add('hidden');
-            document.getElementById('label-res-modul').innerText = 'Modul';
-            document.getElementById('res-modul').innerText = '—';
-            if (data.pertemuan === '-') {
-                document.getElementById('wrap-res-pertemuan').classList.add('hidden');
-            } else {
-                document.getElementById('wrap-res-pertemuan').classList.remove('hidden');
-                document.getElementById('res-pertemuan').innerText = data.pertemuan;
-            }
-        } else if (data.program === 'Tikror') {
-            document.getElementById('wrap-res-level').classList.remove('hidden');
-            document.getElementById('res-level').innerText  = data.level;
-            document.getElementById('label-res-modul').innerText = 'Modul';
-            document.getElementById('res-modul').innerText  = '—';
-            if (data.pertemuan === '-') {
-                document.getElementById('wrap-res-pertemuan').classList.add('hidden');
-            } else {
-                document.getElementById('wrap-res-pertemuan').classList.remove('hidden');
-                document.getElementById('res-pertemuan').innerText = data.pertemuan;
-            }
-        } else {
-            document.getElementById('wrap-res-level').classList.remove('hidden');
-            document.getElementById('res-level').innerText  = data.level;
-            document.getElementById('label-res-modul').innerText = 'Modul';
-            document.getElementById('res-modul').innerText  = data.modul;
-            if (data.pertemuan === '-') {
-                document.getElementById('wrap-res-pertemuan').classList.add('hidden');
-            } else {
-                document.getElementById('wrap-res-pertemuan').classList.remove('hidden');
-                document.getElementById('res-pertemuan').innerText = data.pertemuan;
-            }
-        }
-
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    // ════════════════════════════════════════
-    // SERTIFIKAT
-    // ════════════════════════════════════════
-    async function unduhSertifikat() {
-        if (!certPayloadData || !certPayloadData.program) {
-            Swal.fire({ icon: 'error', title: 'Gagal', text: 'Data peserta tidak lengkap.', confirmButtonColor: '#0F766E' });
-            return;
-        }
-        Swal.fire({
-            title: 'Membuat Sertifikat...',
-            html: '<span style="font-family:Plus Jakarta Sans,sans-serif;color:#0F766E">Mohon tunggu sebentar ya 🎓</span>',
-            allowOutsideClick: false,
-            didOpen: () => { Swal.showLoading(); }
-        });
-        try {
-            const getParams = new URLSearchParams({
-                action:  'certificate',
-                nama:    certPayloadData.nama,
-                program: certPayloadData.program,
-                level:   certPayloadData.level
-            });
-            const response = await fetch(`${API_URL}?${getParams.toString()}`);
-            const res = await response.json();
-            if (res.status === 'success' || res.success === true) {
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Alhamdulillah Berhasil!',
-                    text: 'Sertifikat Anda telah siap.',
-                    confirmButtonText: 'Buka Sertifikat 🏆',
-                    confirmButtonColor: '#0F766E'
-                }).then((result) => {
-                    if (result.isConfirmed && res.url) window.open(res.url, '_blank');
-                });
-            } else {
-                throw new Error(res.message || 'Terjadi kesalahan sistem di server.');
-            }
-        } catch (error) {
-            Swal.fire({ icon: 'error', title: 'Mohon Maaf', text: 'Gagal membuat sertifikat: ' + error.message, confirmButtonColor: '#0F766E' });
-        }
-    }
-
-    // Expose globally
-    window.unduhSertifikat = unduhSertifikat;
-</script>
-
-</body>
-</html>
+                        ${['A','B','C','D'].
