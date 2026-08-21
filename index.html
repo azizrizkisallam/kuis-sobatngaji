@@ -512,6 +512,35 @@
             flex-shrink: 0;
         }
 
+
+        /* ── EVALUASI JAWABAN ── */
+        .btn-evaluasi {
+            display: flex; align-items: center; justify-content: center; gap: 10px;
+            width: 100%; padding: 14px 20px;
+            background: #f0fdfa; color: #0F766E;
+            border: 1.5px solid rgba(15,118,110,0.18);
+            border-radius: 16px; font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 14px; font-weight: 700; cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .btn-evaluasi:hover { background: #ccfbf1; transform: translateY(-1px); }
+        .evaluasi-container { display: none; text-align: left; margin-top: 20px; }
+        .evaluasi-container.show { display: block; animation: fadeUp 0.35s ease both; }
+        .evaluasi-header { margin-bottom: 16px; }
+        .evaluasi-title { font-size: 18px; font-weight: 800; color: #0F766E; margin-bottom: 4px; }
+        .evaluasi-subtitle { font-size: 13px; color: rgba(15,118,110,0.6); }
+        .evaluasi-card { background: rgba(20,184,166,0.035); border: 1.5px solid rgba(20,184,166,0.12); border-radius: 18px; padding: 20px; margin-bottom: 14px; }
+        .evaluasi-question { font-size: 15px; font-weight: 700; line-height: 1.7; color: #134e4a; margin-bottom: 16px; }
+        .evaluasi-option { display: flex; align-items: flex-start; gap: 10px; padding: 11px 13px; border-radius: 12px; margin-bottom: 7px; font-size: 13px; line-height: 1.6; border: 1px solid transparent; }
+        .evaluasi-option.normal { background: #fff; color: #475569; }
+        .evaluasi-option.correct { background: #ecfdf5; border-color: #86efac; color: #166534; }
+        .evaluasi-option.wrong { background: #fef2f2; border-color: #fca5a5; color: #b91c1c; }
+        .evaluasi-option-key { font-weight: 800; min-width: 20px; }
+        .evaluasi-answer-label { display: block; font-size: 11px; font-weight: 700; margin-top: 3px; opacity: 0.75; }
+        .evaluasi-status { margin-top: 14px; padding: 10px 13px; border-radius: 10px; font-size: 12px; font-weight: 700; }
+        .evaluasi-status.correct { background: #ecfdf5; color: #15803d; }
+        .evaluasi-status.wrong { background: #fef2f2; color: #b91c1c; }
+
         /* ── RESPONSIVE ── */
         @media (max-width: 640px) {
             .custom-select, .custom-input { font-size: 16px; }
@@ -526,6 +555,7 @@
 </head>
 <body>
 
+<!-- ── BACKGROUND CANVAS ── -->
 <div class="bg-canvas" aria-hidden="true">
     <div class="bg-pattern"></div>
     <div class="bg-blob blob-1"></div>
@@ -533,10 +563,12 @@
     <div class="bg-blob blob-3"></div>
 </div>
 
+<!-- ── AUDIO ── -->
 <audio id="bg-audio" loop preload="none">
     <source src="https://filebin.net/9d4m5c15uijs3iny/Subhanallah%20the%20best%20islamic%20background%20in%20History%20-%20ALI%20DAWUD%20%282%20Hours%29.mp3" type="audio/mpeg">
 </audio>
 
+<!-- ── HEADER ── -->
 <header class="site-header sticky top-0 z-50">
     <div class="max-w-2xl mx-auto px-5 py-4 flex items-center justify-between">
         <div class="flex items-center gap-3">
@@ -561,9 +593,14 @@
     </div>
 </header>
 
+<!-- ── MAIN ── -->
 <main class="relative z-10 max-w-2xl mx-auto px-4 py-8 pb-16">
 
+    <!-- ═══════════════════════════════════════ -->
+    <!-- SECTION 1: SETUP FORM -->
+    <!-- ═══════════════════════════════════════ -->
     <section id="setup-section">
+        <!-- Hero intro -->
         <div class="text-center mb-8 anim-fade-up">
             <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-500/10 border border-brand-500/20 text-brand-700 text-xs font-700 uppercase tracking-widest mb-4">
                 <span class="w-1.5 h-1.5 rounded-full bg-brand-500"></span>
@@ -575,14 +612,17 @@
             <p class="text-brand-700/70 text-base font-medium">Pilih materi dan mulai kuis sekarang</p>
         </div>
 
+        <!-- Form card -->
         <div class="glass-strong rounded-3xl p-6 sm:p-8 anim-fade-up delay-1">
             <form id="setup-form" class="space-y-5">
 
+                <!-- Nama -->
                 <div>
                     <label class="field-label">Nama Lengkap</label>
                     <input type="text" id="nama" required class="custom-input" placeholder="Masukkan nama lengkap Anda">
                 </div>
 
+                <!-- Guru -->
                 <div>
                     <label class="field-label">Guru Pengampu</label>
                     <div class="custom-select-wrapper">
@@ -605,6 +645,7 @@
                     </div>
                 </div>
 
+                <!-- 2-col: Jenis + Program -->
                 <div class="grid grid-cols-2 gap-4">
                     <div>
                         <label class="field-label">Jenis Kuis</label>
@@ -629,6 +670,7 @@
                     </div>
                 </div>
 
+                <!-- Dynamic fields -->
                 <div id="dynamic-fields" class="section-box space-y-4" style="display:none;">
 
                     <div id="div-level" class="hidden">
@@ -667,13 +709,18 @@
             </form>
         </div>
 
+        <!-- Footer note -->
         <p class="text-center text-xs text-brand-600/50 mt-6 font-medium anim-fade-up delay-2">
             Dilihat Menyenangkan · Dipelajari Memudahkan
         </p>
     </section>
 
+    <!-- ═══════════════════════════════════════ -->
+    <!-- SECTION 2: QUIZ -->
+    <!-- ═══════════════════════════════════════ -->
     <section id="quiz-section" class="hidden">
 
+        <!-- Sticky progress bar -->
         <div id="quiz-sticky-header" class="glass sticky top-[73px] z-40 rounded-2xl px-5 py-3 mb-6 flex items-center gap-4">
             <div class="flex-1">
                 <div class="flex justify-between items-center mb-1.5">
@@ -687,6 +734,7 @@
             <div id="progress-count-pill" class="badge badge-teal text-[11px]">0 dijawab</div>
         </div>
 
+        <!-- Questions -->
         <form id="quiz-form">
             <div id="questions-container" class="space-y-5"></div>
             <div class="mt-8">
@@ -698,13 +746,18 @@
         </form>
     </section>
 
+    <!-- ═══════════════════════════════════════ -->
+    <!-- SECTION 3: RESULT -->
+    <!-- ═══════════════════════════════════════ -->
     <section id="result-section" class="hidden">
         <div class="glass-strong rounded-3xl p-6 sm:p-10 text-center anim-scale-in">
 
+            <!-- Emoji + heading -->
             <div id="result-emoji" class="text-5xl mb-3">🌟</div>
             <h2 id="result-heading" class="text-2xl font-black text-brand-900 mb-1">Alhamdulillah!</h2>
             <p id="result-subtext" class="text-brand-700/60 text-sm font-medium mb-8">Kuis selesai</p>
 
+            <!-- Score ring -->
             <div class="score-ring mb-6" id="score-ring">
                 <div class="score-inner">
                     <div id="result-score" class="text-4xl font-black text-brand-700">0</div>
@@ -712,12 +765,15 @@
                 </div>
             </div>
 
+            <!-- Correct count -->
             <p id="result-correct-count" class="text-sm font-600 text-brand-700/70 mb-6">Jawaban benar: 0 dari 0 soal</p>
 
+            <!-- Status badge -->
             <div class="mb-8">
                 <div id="result-status"></div>
             </div>
 
+            <!-- Cert button -->
             <div id="cert-container" class="hidden mb-6">
                 <button onclick="unduhSertifikat()" class="btn-cert">
                     <span class="text-xl">🏆</span>
@@ -725,6 +781,22 @@
                 </button>
             </div>
 
+            <!-- Evaluasi jawaban -->
+            <div class="mb-6">
+                <button type="button" onclick="toggleEvaluasi()" class="btn-evaluasi">
+                    📝 Lihat Hasil Jawaban
+                </button>
+            </div>
+
+            <div id="evaluasi-container" class="evaluasi-container">
+                <div class="evaluasi-header">
+                    <div class="evaluasi-title">Hasil Jawaban</div>
+                    <div id="evaluasi-subtitle" class="evaluasi-subtitle">Periksa kembali jawaban yang sudah dikerjakan.</div>
+                </div>
+                <div id="evaluasi-list"></div>
+            </div>
+
+            <!-- Info details -->
             <div class="section-box text-left mb-6">
                 <div class="info-row">
                     <span class="info-key">Guru</span>
@@ -748,6 +820,7 @@
                 </div>
             </div>
 
+            <!-- Back button -->
             <button onclick="location.reload()" class="w-full py-3 px-6 rounded-2xl border-2 border-brand-200 text-brand-700 font-700 text-sm hover:bg-brand-50 transition-all duration-200">
                 ← Kembali ke Awal
             </button>
@@ -760,6 +833,7 @@
 
 </main>
 
+<!-- ── SCRIPTS ── -->
 <script>
     // ════════════════════════════════════════
     // AUDIO
@@ -987,11 +1061,9 @@
             levelSelect.innerHTML = '<option value="Tikror 1">Tikror 1</option><option value="Tikror 2">Tikror 2</option><option value="Tikror 3">Tikror 3</option>';
             updatePertemuanOptions();
         } else if (prog === 'Makhroj') {
-    if (jenis === 'Pertemuan') {
-        divPertemuan.classList.remove('hidden');
-        isiPertemuanMakhroj();
-    }
-}
+            divPertemuan.classList.remove('hidden');
+            isiPertemuanMakhroj();
+        }
     }
 
     function isiPertemuan(start, end) {
@@ -1054,12 +1126,8 @@
             params.append('level', levelSelect.value);
             if (jenis === 'Pertemuan') params.append('pertemuan', pertemuanSelect.value);
         } else if (prog === 'Makhroj') {
-
-    if (jenis === 'Pertemuan') {
-        params.append('pertemuan', pertemuanSelect.value);
-    }
-
-}
+            params.append('pertemuan', pertemuanSelect.value);
+        }
 
         Swal.fire({
             title: 'Menyiapkan Soal...',
@@ -1236,6 +1304,7 @@
         document.getElementById('score-ring').style.setProperty('--pct', pct + '%');
         document.getElementById('result-score').innerText = data.nilai;
         document.getElementById('result-correct-count').innerText = `Jawaban benar: ${benar} dari ${totalSoal} soal`;
+        renderEvaluasi(benar, totalSoal);
 
         // Status
         const statusEl = document.getElementById('result-status');
@@ -1300,6 +1369,85 @@
         }
 
         window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // ════════════════════════════════════════
+    // EVALUASI JAWABAN
+    // ════════════════════════════════════════
+    function escapeHtmlEvaluasi(text) {
+        if (text === null || text === undefined) return '';
+        return String(text)
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#039;');
+    }
+
+    function renderEvaluasi(benar, totalSoal) {
+        const list = document.getElementById('evaluasi-list');
+        const subtitle = document.getElementById('evaluasi-subtitle');
+        if (!list) return;
+
+        const salah = totalSoal - benar;
+        subtitle.innerText = `${benar} jawaban benar · ${salah} jawaban perlu diperiksa kembali`;
+        list.innerHTML = '';
+
+        questionsData.forEach((q, index) => {
+            const nomor = index + 1;
+            const jawabanPeserta = String(answersData[index] || '').toUpperCase();
+            const jawabanBenar = String(q.kunci || '').toUpperCase();
+            const isCorrect = jawabanPeserta === jawabanBenar;
+
+            const optionsHtml = ['A','B','C','D'].map(opt => {
+                const isSelected = opt === jawabanPeserta;
+                const isCorrectAnswer = opt === jawabanBenar;
+                let className = 'normal';
+                let label = '';
+
+                if (isCorrectAnswer) {
+                    className = 'correct';
+                    label = `<span class="evaluasi-answer-label">✓ ${isSelected ? 'Jawaban Anda' : 'Jawaban benar'}</span>`;
+                } else if (isSelected) {
+                    className = 'wrong';
+                    label = `<span class="evaluasi-answer-label">✗ Jawaban Anda</span>`;
+                }
+
+                return `
+                    <div class="evaluasi-option ${className}">
+                        <div class="evaluasi-option-key">${opt}.</div>
+                        <div>
+                            <div>${escapeHtmlEvaluasi(q[opt])}</div>
+                            ${label}
+                        </div>
+                    </div>`;
+            }).join('');
+
+            const statusHtml = isCorrect
+                ? `<div class="evaluasi-status correct">✓ Jawaban Anda benar</div>`
+                : `<div class="evaluasi-status wrong">✗ Jawaban belum tepat<br><span style="font-weight:600;">Jawaban benar: ${jawabanBenar}</span></div>`;
+
+            list.innerHTML += `
+                <div class="evaluasi-card">
+                    <div class="evaluasi-question">${nomor}. ${escapeHtmlEvaluasi(q.soal)}</div>
+                    <div>${optionsHtml}</div>
+                    ${statusHtml}
+                </div>`;
+        });
+    }
+
+    function toggleEvaluasi() {
+        const container = document.getElementById('evaluasi-container');
+        if (!container) return;
+        const sedangTampil = container.classList.contains('show');
+        if (sedangTampil) {
+            container.classList.remove('show');
+            return;
+        }
+        container.classList.add('show');
+        setTimeout(() => {
+            container.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100);
     }
 
     // ════════════════════════════════════════
