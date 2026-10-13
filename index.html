@@ -1061,8 +1061,12 @@
             levelSelect.innerHTML = '<option value="Tikror 1">Tikror 1</option><option value="Tikror 2">Tikror 2</option><option value="Tikror 3">Tikror 3</option>';
             updatePertemuanOptions();
         } else if (prog === 'Makhroj') {
-            divPertemuan.classList.remove('hidden');
-            isiPertemuanMakhroj();
+            if (jenis === 'Pertemuan') {
+                divPertemuan.classList.remove('hidden');
+                isiPertemuanMakhroj();
+            } else {
+                pertemuanSelect.innerHTML = '';
+            }
         }
     }
 
@@ -1126,7 +1130,7 @@
             params.append('level', levelSelect.value);
             if (jenis === 'Pertemuan') params.append('pertemuan', pertemuanSelect.value);
         } else if (prog === 'Makhroj') {
-            params.append('pertemuan', pertemuanSelect.value);
+            if (jenis === 'Pertemuan') params.append('pertemuan', pertemuanSelect.value);
         }
 
         Swal.fire({
@@ -1338,7 +1342,7 @@
             document.getElementById('wrap-res-level').classList.add('hidden');
             document.getElementById('label-res-modul').innerText = 'Modul';
             document.getElementById('res-modul').innerText = '—';
-            if (data.pertemuan === '-') {
+            if (jenisKuis === 'Kenaikan' || data.pertemuan === '-') {
                 document.getElementById('wrap-res-pertemuan').classList.add('hidden');
             } else {
                 document.getElementById('wrap-res-pertemuan').classList.remove('hidden');
